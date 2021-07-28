@@ -9,24 +9,24 @@ namespace Task1
         /// <param name="arr">Numbers to sort.</param>
         public static void Sort(int[] arr)
         {
-            int n = arr.Length;
-            if(arr is null)
+            if (arr is null)
             {
-                throw new ArgumentNullException("Argument should be not null");
+                throw new ArgumentNullException(nameof(arr));
             }
-            else
-            {
 
-                for (int i = 0; i < n - 1; i++)
-                    for (int j = 0; j < n - i - 1; j++)
-                        if (arr[j] > arr[j + 1])
-                        {
-                            // swap temp and arr[i]
-                            int temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
-                        }
+            int n = arr.Length;
+            for (int? i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // swap temp and arr[i]
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
             }
+            
         }
 
         /// <summary>
@@ -43,34 +43,15 @@ namespace Task1
             {
                 throw new ArgumentNullException();
             }
-            else
-            {
 
-                
-                for (int i = 0; i < products.Length; i++)
+            for (int i = 0; i < products.Length; i++)
+            {
+                if (predicate(products[i]))
                 {
-                    Product prod = Array.Find(products, predicate);
-                    var product = products[i];
-                    if (prod==product)
-                    {
-                        return i;
-                    }
+                    return i;
                 }
             }
             return -1;
         }
-
-
-        /*private static bool Find(Product[] prod1, Product prod2)
-        {
-            for (int i = 0; i < prod1.Length; i++)
-            {
-                if(prod1[i].Name == prod2.Name && prod1[i].Price == prod2.Price)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
     }
 }
